@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+{%block title%}Inicio {%endblock%}
+{%block content%}
+<section class="contenedor">
+    <h1 class="mb-5 titulo"> Fin para tener un principio</h1>
+    {%for call in calls%}
+    <div class="alert alert-primary" role="alert">
+       {{call['Comentario']}}
+      </div>
+    {%endfor%}
+
+    <div class="divbtn">
+        <a href="{{url_for('create')}}" id="btn-abrir-popup" class="btn-abrir-popup">cuentame tu historias</a>
+        </div>
+        <div class="divbtn">
+        <ul class="pager">
+          {%if page >1%}
+          <li><a href="{{page-1}}" class="btn-abrir-popup">Anteriores</a></li>
+          {%endif%}
+          {%if page <num%}
+          
+          <li><a href="{{page+1}}" class="btn-abrir-popup">Siguientes</a></li>
+          {%endif%}
+        </ul>
+        </div>
+</section>
+
+{%endblock%}

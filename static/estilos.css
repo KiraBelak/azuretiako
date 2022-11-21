@@ -1,0 +1,344 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'open sans';
+}
+
+.contenedor{
+    padding: 60px 0;
+    width: 90%;
+    max-width: 1000px;
+    margin:auto;
+    overflow: hidden;
+}
+.titulo{
+    color: #642a73;
+    font-size: 30px;    
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+img{
+    width: 100px;
+    position: absolute;
+    bottom: 380px;
+    left: 50px;
+}
+
+header{
+    width: 100%;
+    height: 600px;
+    background: #6441A5;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, hsla(273, 79%, 15%, 0.683), hsla(261, 43%, 45%, 0.683)), url(head.jpg);   /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, hsla(273, 79%, 15%, 0.683), hsla(261, 43%, 45%, 0.683)), url(head.jpg); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+background-size: 100% 100%;
+background-attachment: fixed;
+position: relative;
+}
+
+header > nav{
+    text-align: right;
+    padding:30px 50px 0 0 ;
+}
+
+header > nav > a {
+    color: #fff;
+    font-weight: 300;
+    text-decoration: none;
+    margin-right: 10px;
+}
+header > nav > a:hover {
+    
+    text-decoration: underline;
+  
+}
+
+header .textos-header{
+    display: flex;
+    height: 430px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.textos-header h1{
+    font-size: 50px;
+    color: #fff;
+}
+
+.textos-header h2{
+    font-size: 30px;
+    font-weight: 300;
+    color: #fff;
+}
+
+.wave{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.alert{
+    display: flex;
+    margin-bottom: 10px;
+    color: #642a73;
+    font-size: 25px;
+width: 99%;
+box-shadow: 0 0 6px 0 rgba(0, 0, 0,.5) ;
+margin-left: 1px;
+
+}
+
+
+ul.pagination {
+    display: inline-block;
+    padding: 20px;
+    margin: 0;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    color: #642a73;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.overlay {
+	background: rgba(0,0,0,.3);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	visibility: hidden;
+}
+
+.overlay.active {
+	visibility: visible;
+}
+
+.popup {
+	background: #F8F8F8;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+	border-radius: 3px;
+	font-family: 'Montserrat', sans-serif;
+	padding: 20px;
+	text-align: center;
+	width: 600px;
+	
+	transition: .3s ease all;
+	transform: scale(0.7);
+	opacity: 0;
+}
+
+.popup .btn-cerrar-popup {
+	font-size: 16px;
+	line-height: 16px;
+	display: block;
+	text-align: right;
+	transition: .3s ease all;
+	color: #BBBBBB;
+}
+
+.popup .btn-cerrar-popup:hover {
+	color: #000;
+}
+
+.popup h3 {
+	font-size: 36px;
+	font-weight: 600;
+	margin-bottom: 10px;
+	opacity: 0;
+}
+
+.popup h4 {
+	font-size: 26px;
+	font-weight: 300;
+	margin-bottom: 40px;
+	opacity: 0;
+}
+
+.popup form .contenedor-inputs {
+	opacity: 0;
+    
+}
+
+.popup form .contenedor-inputs input {
+	width: 100%;
+	margin-bottom: 20px;
+	height: 52px;
+	font-size: 18px;
+	line-height: 52px;
+	text-align: center;
+	border: 1px solid #BBBBBB;
+}
+
+.popup form .btn-submit {
+	padding: 0 20px;
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	color: #fff;
+	background: #5E7DE3;
+	border-radius: 3px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	cursor: pointer;
+	transition: .3s ease all;
+}
+
+.popup form .btn-submit:hover {
+	background: rgba(94,125,227, .9);
+}
+
+/* ------------------------- */
+/* ANIMACIONES */
+/* ------------------------- */
+.popup.active {	transform: scale(1); opacity: 1; }
+.popup.active h3 { animation: entradaTitulo .8s ease .5s forwards; }
+.popup.active h4 { animation: entradaSubtitulo .8s ease .5s forwards; }
+.popup.active .contenedor-inputs { animation: entradaInputs 1s linear 1s forwards; }
+
+@keyframes entradaTitulo {
+	from {
+		opacity: 0;
+		transform: translateY(-25px);
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes entradaSubtitulo {
+	from {
+		opacity: 0;
+		transform: translateY(25px);
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes entradaInputs {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+.btn-abrir-popup {
+	
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+			appearance: none;
+	background-color: transparent;
+	border: 2px solid #e74c3c;
+	border-radius: 0.6em;
+	color: #e74c3c;
+	cursor: pointer;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-align-self: center;
+		-ms-flex-item-align: center;
+			align-self: center;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1;
+	margin: 20px;
+	padding: 1.2em 2.8em;
+	text-decoration: none;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+  }
+  .btn-abrir-popup:hover, .btn-abrir-popup:focus {
+	color: #fff;
+	outline: 0;
+	background-color: #000;
+  }
+
+  .btn-abrir-popup {
+	border-color: #3498db;
+	background-color: #642a73;
+
+	color: #fff;
+	box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+	-webkit-transition: all 150ms ease-in-out;
+	transition: all 150ms ease-in-out;
+  }
+  .btn-abrir-popup {
+	box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+  }
+
+  .divbtn{
+	display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-align-content: center;
+      -ms-flex-line-pack: center;
+          align-content: center;
+  }
+  
+  .pager{
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  margin-top: 0px;
+	  padding: 0;
+	  scale: 0.7;
+  }	
+
+  .divbtn li{
+	display: inline-block;
+	
+  }
+  
+
+  
+  
+  .forma{
+	width: 90%;
+	height: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-flow: column wrap;
+	background-color: #ecedee;
+	border-radius: 5px;
+ }
+ .forma textarea{
+	resize: none;
+ }
+ .forma label{
+	font-size: 2em;
+	color: #642a73;
+ }
+	

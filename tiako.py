@@ -1,10 +1,12 @@
-from datetime import datetime
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory,flash,g
-app = Flask(__name__)
+from flask import(
+    Blueprint,flash,g,redirect,render_template,request,url_for
+)
 from werkzeug.exceptions import abort
 from db import get_db
 
-@app.route('/')
+bp=Blueprint('tiako',__name__)
+
+@bp.route('/')
 def indexx(page=1):
     db,c=get_db()
     c.execute('select * from publicacion where id>=%s and id<=%s',(page*10-10,page*10))
@@ -13,7 +15,7 @@ def indexx(page=1):
     print(num)
     return render_template('tiak/index.html',calls=calls,num=num,page=page)
 
-@app.route('/<int:page>')
+@bp.route('/<int:page>')
 def index(page):
     db,c=get_db()
     c.execute('select * from publicacion where id>=%s and id<=%s',(page*10-10,page*10))
@@ -22,7 +24,7 @@ def index(page):
     print(num)
     return render_template('tiak/index.html',calls=calls,num=num,page=page)
 
-@app.route('/crear',methods=('GET','POST'))
+@bp.route('/crear',methods=('GET','POST'))
 def create():
     if request.method=='POST':   
         hist=request.form['historia']
@@ -38,12 +40,3 @@ def create():
             return redirect(url_for('tiako.indexx')) 
         return redirect(url_for('tiako.indexx'))
     return render_template('tiak/historia.html')
-
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
-
-
-if __name__ == '__main__':
-   app.run()
