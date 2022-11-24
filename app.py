@@ -73,7 +73,7 @@ def tryGoogle(myQuery):
 
 @app.route("/bot")
 def bot():
-    return render_template("bot.html", botName = chatbotName, chatBG = chatBG, botAvatar = botAvatar)
+    return render_template("tiak/bot.html", botName = chatbotName, chatBG = chatBG, botAvatar = botAvatar)
 
 @app.route("/get")
 def get_bot_response():
@@ -83,12 +83,6 @@ def get_bot_response():
         botReply = str(getResponse('IDKnull')) ##Send the i don't know code back to the DB
         if useGoogle == "yes":
             botReply = botReply + tryGoogle(userText)
-    elif botReply == "getTIME":
-        botReply = getTime()
-        print(getTime())
-    elif botReply == "getDATE":
-        botReply = getDate()
-        print(getDate())
     ##Log to CSV file
     print("Logging to CSV file now")
     with open('BotLog.csv', 'a', newline='') as logFile:
